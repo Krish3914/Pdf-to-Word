@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pdf to Word Converter</title>
+
+    <style>
+      body{
+        background: url(back.png);
+        margin: 0px;
+        padding: 0px;
+        height: 100vh;
+      }
+      form{
+        display: flex;
+        flex-direction: column;
+        margin-left: 40%;
+        height: 63vh;
+        
+
+      }
+      label{
+        font-size: large;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: bold;
+      }
+      .file{
+        padding: 0px;
+        margin: 0px;
+      }
+      h1{
+        padding: 30px;
+        color: firebrick;
+
+      }
+      h2{
+        text-align: center;
+        color: #E21818;
+      }
+      #pdf-file{
+        color: blue;
+        font-size: x-large;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        border-radius: 200px;
+        height: 41px;
+        width: 350px;
+        padding: 0px;
+        margin-top: 25px;
+        margin-left: 25px;
+      }
+      .line{
+        width: 250px;
+        margin-left: 41.5%;
+      }
+      button{
+        height: 50px;
+        width: 200px;
+        border-radius: 150px;
+        color: darkcyan;
+        background: url(button.jpeg);
+        font-size: large;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-style: oblique;
+        margin: 5% 0px 0px 20%;
+
+      }
+      img{
+        height: 200px;
+        width: 400px;
+        border-radius: 80px;
+        margin: 0px;
+      }
+      .pdftoword{
+        float: left;
+      }
+    </style>
+</head>
+<body>
+  <h1><em>PDF Converter</em></h1>
+  <br>
+  <h2><strong>🎉 PDF To Word Converter 🎉 </strong></h2>
+  <div class="line">
+    
+  <hr color="maroon" size="3" align="center">
+
+  </div>
+  <br><br><br>
+  <div id="imageleft">
+    <img src="./pdftoword.jpg" alt="" class="pdftoword">
+      <div class="file">
+        <form action="#">
+        <label for="pdf-file">Select a PDF file :</label>
+        <input type="file" id="pdf-file" name="pdf-file">
+        <button onclick="convertPdfToWord()">Convert to Word</button> 
+
+        </form>
+      </div>
+
+  </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+      function convertPdfToWord() {
+        const pdfFile = document.getElementById("pdf-file").files[0];
+        const fileReader = new FileReader();
+        fileReader.readAsArrayBuffer(pdfFile);
+        fileReader.onload = async function() {
+          const pdfData = new Uint8Array(this.result);
+          const loadingTask = pdfjsLib.getDocument({data: pdfData});
+          const pdfDocument = await loadingTask.promise;
+          const wordArray = await pdfDocument.saveDocument({type: 'blob', options: {returnPromise: true}});
+          const wordBlob = new Blob([wordArray], {type: 'application/msword'});
+          const downloadLink = document.createElement("a");
+          downloadLink.href = URL.createObjectURL(wordBlob);
+          downloadLink.download = pdfFile.name.replace(/\.pdf$/i, ".doc");
+          downloadLink.click();
+        };
+      }
+    </script>
+    
+</body>
+</html>
