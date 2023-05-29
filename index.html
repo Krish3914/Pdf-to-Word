@@ -7,42 +7,41 @@
     <title>Pdf to Word Converter</title>
 
     <style>
-      body{
+      body {
         background: url(back.png);
         margin: 0px;
         padding: 0px;
         height: 100vh;
       }
-      form{
+      form {
         display: flex;
         flex-direction: column;
-        margin-left: 40%;
+        margin-left: 42%;
         height: 63vh;
-        
-
+        margin-top: 30px;
       }
-      label{
+      label {
         font-size: large;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
         font-weight: bold;
       }
-      .file{
+      .file {
         padding: 0px;
         margin: 0px;
       }
-      h1{
+      h1 {
         padding: 30px;
         color: firebrick;
-
       }
-      h2{
+      h2 {
         text-align: center;
-        color: #E21818;
+        color: #e21818;
       }
-      #pdf-file{
+      #pdf-file {
         color: blue;
         font-size: x-large;
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
         border-radius: 200px;
         height: 41px;
         width: 350px;
@@ -50,30 +49,59 @@
         margin-top: 25px;
         margin-left: 25px;
       }
-      .line{
+      .line {
         width: 250px;
         margin-left: 41.5%;
       }
-      button{
+      button {
         height: 50px;
         width: 200px;
         border-radius: 150px;
         color: darkcyan;
         background: url(button.jpeg);
         font-size: large;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: Georgia, "Times New Roman", Times, serif;
         font-style: oblique;
         margin: 5% 0px 0px 20%;
-
       }
-      img{
+      img {
         height: 200px;
         width: 400px;
         border-radius: 80px;
         margin: 0px;
       }
-      .pdftoword{
+      .pdftoword {
         float: left;
+      }
+      @media (max-width: 720px) {
+        form {
+          display: flex;
+          flex-direction: column;
+          margin-left: 20%;
+          height: 63vh;
+          margin-top: 40px;
+        }
+        .pdftoword {
+          float: none;
+        }
+        .line {
+          width: 250px;
+          margin-left: 30%;
+        }
+        img {
+          height: 200px;
+          width: 400px;
+          border-radius: 80px;
+          margin: 0px;
+        }
+      }
+      @media (min-width : 720px) and (max-width : 1000px) {
+        img {
+          height: 200px;
+          width: 300px;
+          border-radius: 80px;
+          margin: 0px;
+        }
       }
     </style>
 </head>
